@@ -1,0 +1,63 @@
+#!/bin/bash
+PATH="$PWD/node_modules/.bin":$PATH
+set -e
+
+hello() {
+    echo Hello from taskfile
+    echo args: "$1" "$2" "$3"
+}
+
+remark_run() {
+    node -r ts-node/register/transpile-only node_modules/remark-cli/cli.js readme.md "$@"
+}
+
+remark_output() {
+    remark_run --output
+}
+
+build() {
+    set -x
+    rm -rfv dist
+    cp -rfv src dist
+    cat tsconfig.json | jq 'del(.include, .compilerOptions.outDir)' > dist/tsconfig.json
+    cp -v README.md LICENSE package.json dist
+    cd dist
+    /usr/bin/find . -name '*.spec.ts' | xargs rm -rvf
+    tsc -p .
+    rm -rvf tsconfig.json
+    cd ..
+    set +x
+}
+
+# Build node bundle
+build_bundle() {
+    set -x
+    rm -rfv dist
+    cp -rfv src dist
+    cat tsconfig.json | jq 'del(.include, .compilerOptions.outDir)' > dist/tsconfig.json
+    cp -v README.md LICENSE package.json dist
+    cd dist
+    /usr/bin/find -name '*.spec.ts' | xargs rm -rvf
+    npx typescript-bundle tsconfig.json --exportAs commonjs --outFile index.js
+    rm -rvf tsconfig.json
+    /usr/bin/find -name '*.ts' | xargs rm -rvf
+    /usr/bin/find . -type d -empty -delete
+    cd ..
+    set +x
+}
+
+# Build frontend package
+build_f() {
+    ng-packagr
+}
+
+eslint_run() {
+    eslint src --ext ts
+}
+
+lint_watch() {
+    npm run tsclint:w 2>&1 &
+    npm run eslint:w 2>&1 &
+}
+
+"$@"
