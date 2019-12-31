@@ -1,13 +1,10 @@
-# node-package-starter
+# graphql-starter
 
-## Install
-```
-git clone https://github.com/unlight/node-package-starter
-```
-If necessary:
-```
-npm run setupfrontend
-npm run setupwebpack
-npm run setupmutation
-npm run setupkarma
-```
+## Stack
+
+-   Type GraphQL
+
+## Todo
+
+-   Add https://github.com/MichalLytek/type-graphql/blob/prisma/examples/basic/index.ts
+-   Add all features from type graphql

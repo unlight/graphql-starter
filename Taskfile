@@ -2,19 +2,6 @@
 PATH="$PWD/node_modules/.bin":$PATH
 set -e
 
-hello() {
-    echo Hello from taskfile
-    echo args: "$1" "$2" "$3"
-}
-
-remark_run() {
-    node -r ts-node/register/transpile-only node_modules/remark-cli/cli.js readme.md "$@"
-}
-
-remark_output() {
-    remark_run --output
-}
-
 build() {
     set -x
     rm -rfv dist
@@ -44,11 +31,6 @@ build_bundle() {
     /usr/bin/find . -type d -empty -delete
     cd ..
     set +x
-}
-
-# Build frontend package
-build_f() {
-    ng-packagr
 }
 
 eslint_run() {
