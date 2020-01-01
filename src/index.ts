@@ -3,6 +3,7 @@ import { ApolloServer } from 'apollo-server';
 import { buildSchema } from 'type-graphql';
 import { UserResolver } from './user/user.resolver';
 import { Container } from 'typedi';
+import 'loud-rejection/register';
 
 async function main() {
     // Build TypeGraphQL executable schema

@@ -1,7 +1,18 @@
-import { Resolver, ResolverInterface, Query, Arg, Ctx, Mutation } from 'type-graphql';
+import {
+    Resolver,
+    ResolverInterface,
+    Query,
+    Ctx,
+    Mutation,
+    Arg,
+    FieldResolver,
+    Root,
+} from 'type-graphql';
 import { User } from './user.object-type';
 import { UserService } from './user.service';
 import { Service } from 'typedi';
+import { UserInput } from './user.input';
+import { Int } from 'type-graphql';
 
 @Service()
 @Resolver(() => User)
@@ -18,23 +29,13 @@ export class UserResolver {
         return this.userService.getAll();
     }
 
-    // @Mutation(() => User)
-    // async addUser(@Arg('recipe') recipeInput: RecipeInput): Promise<Recipe> {
-    //     const recipe = plainToClass(Recipe, {
-    //         description: recipeInput.description,
-    //         title: recipeInput.title,
-    //         ratings: [],
-    //         creationDate: new Date(),
-    //     });
-    //     await this.items.push(recipe);
-    //     return recipe;
-    // }
+    @Mutation(() => User)
+    async addUser(@Arg('user') userInput: UserInput): Promise<User> {
+        return this.userService.createUser(userInput);
+    }
 
-    //   @FieldResolver()
-    //   ratingsCount(
-    //     @Root() recipe: Recipe,
-    //     @Arg("minRate", type => Int, { defaultValue: 0.0 }) minRate: number,
-    //   ): number {
-    //     return recipe.ratings.filter(rating => rating >= minRate).length;
-    //   }
+    @FieldResolver(() => Int)
+    async nameLength(@Root() user: User) {
+        return user.name.length;
+    }
 }
