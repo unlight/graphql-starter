@@ -3,13 +3,14 @@ import { ApolloServer } from 'apollo-server';
 import { buildSchema } from 'type-graphql';
 import { UserResolver } from './user/user.resolver';
 import { Container } from 'typedi';
-import 'loud-rejection/register';
+import { OkResolver } from './ok/ok.resolver';
+import { Query } from './ok/ok.interceptor';
 
 async function main() {
     // Build TypeGraphQL executable schema
     const schema = await buildSchema({
         container: Container,
-        resolvers: [UserResolver],
+        resolvers: [UserResolver, OkResolver],
         // automatically create `schema.gql` file with schema definition in current folder
         emitSchemaFile: '~schema.gql',
     });
@@ -17,6 +18,7 @@ async function main() {
     const server = new ApolloServer({
         schema,
         playground: true,
+        resolvers: [{ Query }],
     });
     // Start the server
     const { url } = await server.listen(4000);

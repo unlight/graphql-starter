@@ -6,7 +6,7 @@
     "node": ">=12"
   },
   "scripts": {
-    "dev": "node node_modules/ts-node-dev/bin/ts-node-dev --no-notify --no-deps --transpileOnly src",
+    "dev": "node -r loud-rejection/register node_modules/ts-node-dev/bin/ts-node-dev --no-notify --no-deps --transpileOnly src",
     "test:r": "node node_modules/jest/bin/jest --runInBand --verbose",
     "test:w": "npm run test:r -- --watch",
     "test:cov": "npm run test:r -- --collectCoverage",
@@ -17,14 +17,14 @@
     "eslint:w": "watchexec -w src \"npm run eslint\"",
     "eslint": "node node_modules/eslint/bin/eslint src --ext ts",
     "eslint:fix": "npm run eslint -- --fix",
-    "#remove#dev": "node node_modules/webpack-dev-server/bin/webpack-dev-server",
-    "build": "sh Taskfile build",
-    "setupwebpack": "npm i && npm i -D webpack @types/webpack @types/webpack-env webpack-cli webpack-dev-server html-webpack-plugin source-map-loader ts-loader html-loader add-asset-html-webpack-plugin terser-webpack-plugin istanbul-instrumenter-loader swc-loader @swc/core"
+    "build": "sh Taskfile build"
   },
   "dependencies": {
     "@abraham/reflection": "^0.7.0",
     "apollo-server": "^2.9.15",
     "class-transformer": "^0.2.3",
+    "class-validator": "^0.11.0",
+    "dataloader": "^2.0.0",
     "graphql": "^14.5.8",
     "type-graphql": "^0.18.0-beta.8",
     "typedi": "^0.8.0"

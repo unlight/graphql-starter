@@ -13,6 +13,7 @@ import { UserService } from './user.service';
 import { Service } from 'typedi';
 import { UserInput } from './user.input';
 import { Int } from 'type-graphql';
+import DataLoader from 'dataloader';
 
 @Service()
 @Resolver(() => User)
@@ -37,5 +38,14 @@ export class UserResolver {
     @FieldResolver(() => Int)
     async nameLength(@Root() user: User) {
         return user.name.length;
+    }
+
+    @FieldResolver(() => Int)
+    async countComments(@Root() user: User) {
+        const { id } = user;
+        const countCommentsDataLoader = new DataLoader(async (ids: string[]) => {
+            return ids.map(x => (~~x) ** 2);
+        });
+        return countCommentsDataLoader.load(id);
     }
 }
