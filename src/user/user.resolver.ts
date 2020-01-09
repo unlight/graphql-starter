@@ -18,7 +18,12 @@ import DataLoader from 'dataloader';
 @Service()
 @Resolver(() => User)
 export class UserResolver {
-    constructor(private readonly userService: UserService) {}
+    private countCommentsDataLoader: any;
+    constructor(private readonly userService: UserService) {
+        this.countCommentsDataLoader = new DataLoader(async (ids: string[]) => {
+            return ids.map(x => (~~x) ** 2);
+        });
+    }
 
     @Query(() => User, { nullable: true })
     async user(@Arg('id') id: string): Promise<User | undefined> {
@@ -43,9 +48,6 @@ export class UserResolver {
     @FieldResolver(() => Int)
     async countComments(@Root() user: User) {
         const { id } = user;
-        const countCommentsDataLoader = new DataLoader(async (ids: string[]) => {
-            return ids.map(x => (~~x) ** 2);
-        });
-        return countCommentsDataLoader.load(id);
+        return this.countCommentsDataLoader.load(id);
     }
 }
