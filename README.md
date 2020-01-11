@@ -16,3 +16,8 @@
 ```
 Resolver -> Service -> Repository
 ```
+
+## Resources
+
+-   https://github.com/benawad/type-graphql-series
+-   https://github.com/benawad/type-graphql-series/tree/11_file_uploads (https://www.youtube.com/watch?v=s35EmAn9Zl8)

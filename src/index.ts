@@ -4,7 +4,6 @@ import { buildSchema } from 'type-graphql';
 import { UserResolver } from './user/user.resolver';
 import { Container } from 'typedi';
 import { OkResolver } from './ok/ok.resolver';
-import { Query } from './ok/ok.interceptor';
 
 async function main() {
     // Build TypeGraphQL executable schema
@@ -18,7 +17,6 @@ async function main() {
     const server = new ApolloServer({
         schema,
         playground: true,
-        resolvers: [{ Query }],
     });
     // Start the server
     const { url } = await server.listen(4000);
