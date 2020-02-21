@@ -1,29 +1,29 @@
 import { Service } from 'injectant';
 
+const users: any[] = [
+    {
+        id: 1,
+        name: 'Dummy',
+    },
+];
+
 @Service()
 export class UserRepository {
-    private readonly users: any[] = [
-        {
-            id: 1,
-            name: 'Dummy',
-        },
-    ];
-
     async getById(id: string) {
-        return this.users.find(user => user.id === id);
+        return users.find(user => user.id === id);
     }
 
     async getAll() {
-        return this.users;
+        return users;
     }
 
     async createUser(createUser: any) {
-        const user = { id: this.users.length + 1, name: createUser.name };
-        this.users.push(user);
+        const user = { id: users.length + 1, name: createUser.name };
+        users.push(user);
         return user;
     }
 
     async getCount() {
-        return this.users.length;
+        return users.length;
     }
 }

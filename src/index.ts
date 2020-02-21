@@ -12,6 +12,7 @@ async function main() {
     const schema = await buildSchema({
         container: Injector,
         resolvers: [UserResolver, OkResolver],
+        validate: false,
         // automatically create `schema.gql` file with schema definition in current folder
         emitSchemaFile: '~schema.gql',
     });
@@ -19,6 +20,7 @@ async function main() {
     const server = new ApolloServer({
         schema,
         playground: true,
+        tracing: true,
     });
     // Start the server
     const { url } = await server.listen(4000);
