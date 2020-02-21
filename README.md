@@ -6,6 +6,7 @@
 
 ## Todo
 
+-   replace serializatio to https://github.com/marcj/marshal.ts
 -   Add upload file
 -   Add all features from type graphql
 -   Add https://github.com/MichalLytek/type-graphql/blob/prisma/examples/basic/index.ts

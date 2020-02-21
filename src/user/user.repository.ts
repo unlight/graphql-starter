@@ -1,4 +1,4 @@
-import { Service } from 'typedi';
+import { Service } from 'injectant';
 
 @Service()
 export class UserRepository {

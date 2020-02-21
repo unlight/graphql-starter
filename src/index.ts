@@ -1,8 +1,8 @@
 import '@abraham/reflection';
 
 import { ApolloServer } from 'apollo-server';
+import { Injector } from 'injectant';
 import { buildSchema } from 'type-graphql';
-import { Container } from 'typedi';
 
 import { OkResolver } from './ok/ok.resolver';
 import { UserResolver } from './user/user.resolver';
@@ -10,7 +10,7 @@ import { UserResolver } from './user/user.resolver';
 async function main() {
     // Build TypeGraphQL executable schema
     const schema = await buildSchema({
-        container: Container,
+        container: Injector,
         resolvers: [UserResolver, OkResolver],
         // automatically create `schema.gql` file with schema definition in current folder
         emitSchemaFile: '~schema.gql',

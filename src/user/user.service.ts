@@ -1,5 +1,5 @@
 import { plainToClass } from 'class-transformer';
-import { Service } from 'typedi';
+import { Service } from 'injectant';
 
 import { UserInput } from './user.input';
 import { User } from './user.object-type';

@@ -1,6 +1,6 @@
 import DataLoader from 'dataloader';
+import { Service } from 'injectant';
 import { Arg, FieldResolver, Int, Mutation, Query, Resolver, Root } from 'type-graphql';
-import { Service } from 'typedi';
 
 import { UserInput } from './user.input';
 import { User } from './user.object-type';

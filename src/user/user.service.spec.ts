@@ -1,4 +1,4 @@
-import { Container } from 'typedi';
+import { Injector } from 'injectant';
 
 import { UserService } from './user.service';
 
@@ -6,7 +6,7 @@ describe('UserService', () => {
     let service: UserService;
 
     beforeEach(() => {
-        service = Container.get(UserService);
+        service = Injector.get(UserService);
     });
 
     it('smoke', () => {
