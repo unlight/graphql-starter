@@ -7,6 +7,7 @@
   },
   "scripts": {
     "dev": "node -r loud-rejection/register node_modules/ts-node-dev/bin/ts-node-dev --no-notify --no-deps --transpileOnly src",
+    "inspect": "node -r loud-rejection/register node_modules/ts-node-dev/bin/ts-node-dev --no-notify --no-deps --inspect --transpileOnly src",
     "test:r": "node node_modules/jest/bin/jest --runInBand --verbose",
     "test:w": "npm run test:r -- --watch",
     "test:cov": "npm run test:r -- --collectCoverage",
