@@ -1,4 +1,5 @@
-import { Resolver, Query, UseMiddleware } from 'type-graphql';
+import { Query, Resolver, UseMiddleware } from 'type-graphql';
+
 import { okInterceptor } from './ok.interceptor';
 
 @Resolver(() => Boolean)

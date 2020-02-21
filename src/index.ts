@@ -1,9 +1,11 @@
 import '@abraham/reflection';
+
 import { ApolloServer } from 'apollo-server';
 import { buildSchema } from 'type-graphql';
-import { UserResolver } from './user/user.resolver';
 import { Container } from 'typedi';
+
 import { OkResolver } from './ok/ok.resolver';
+import { UserResolver } from './user/user.resolver';
 
 async function main() {
     // Build TypeGraphQL executable schema

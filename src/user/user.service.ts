@@ -1,8 +1,8 @@
 import { plainToClass } from 'class-transformer';
-import { Service, Inject, Container } from 'typedi';
-import { User } from './user.object-type';
-import { createUser } from './testing';
+import { Service } from 'typedi';
+
 import { UserInput } from './user.input';
+import { User } from './user.object-type';
 import { UserRepository } from './user.repository';
 
 @Service()
@@ -18,10 +18,9 @@ export class UserService {
     }
 
     async createUser(createUser: UserInput) {
-        let userRecord = { name: createUser.name };
+        const userRecord = { name: createUser.name };
         const userObject = await this.repository.createUser(userRecord);
-        const result = plainToClass(User, userObject);
-        return result;
+        return plainToClass(User, userObject);
     }
 
     async getCount() {

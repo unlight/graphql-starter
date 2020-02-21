@@ -2,7 +2,7 @@ import { Service } from 'typedi';
 
 @Service()
 export class UserRepository {
-    private users: any[] = [
+    private readonly users: any[] = [
         {
             id: 1,
             name: 'Dummy',

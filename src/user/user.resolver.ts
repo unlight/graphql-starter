@@ -1,24 +1,15 @@
-import {
-    Resolver,
-    ResolverInterface,
-    Query,
-    Ctx,
-    Mutation,
-    Arg,
-    FieldResolver,
-    Root,
-} from 'type-graphql';
+import DataLoader from 'dataloader';
+import { Arg, FieldResolver, Int, Mutation, Query, Resolver, Root } from 'type-graphql';
+import { Service } from 'typedi';
+
+import { UserInput } from './user.input';
 import { User } from './user.object-type';
 import { UserService } from './user.service';
-import { Service } from 'typedi';
-import { UserInput } from './user.input';
-import { Int } from 'type-graphql';
-import DataLoader from 'dataloader';
 
 @Service()
 @Resolver(() => User)
 export class UserResolver {
-    private countCommentsDataLoader: any;
+    private readonly countCommentsDataLoader: any;
     constructor(private readonly userService: UserService) {
         this.countCommentsDataLoader = new DataLoader(async (ids: string[]) => {
             return ids.map(x => (~~x) ** 2);
