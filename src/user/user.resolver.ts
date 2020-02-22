@@ -12,9 +12,10 @@ import {
 } from 'type-graphql';
 
 import { UserInput } from './user.input';
-import { User } from './user.object-type';
+import { User } from './user';
 import { UserService } from './user.service';
-import { userInputValidate } from './user-input.validate';
+import { ValidateArgs } from './validate-args.decorator';
+import { Parameter } from '../components/parameter.decorator';
 
 @Service()
 @Resolver(() => User)
@@ -36,8 +37,9 @@ export class UserResolver {
     }
 
     @Mutation(() => User)
-    @UseMiddleware(userInputValidate)
-    async addUser(@Arg('user') userInput: UserInput): Promise<User> {
+    @ValidateArgs('user', UserInput)
+    async addUser(@Arg('user', { validate: false }) userInput: UserInput): Promise<User> {
+        console.log('userInput', userInput);
         return this.userService.createUser(userInput);
     }
 

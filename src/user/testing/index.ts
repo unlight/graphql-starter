@@ -1,4 +1,4 @@
-import { User } from '../user.object-type';
+import { User } from '../user';
 
 export function createUser(parts: Partial<User> = {}): User {
     return {

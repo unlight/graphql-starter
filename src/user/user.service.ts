@@ -2,7 +2,7 @@ import { plainToClass } from 'class-transformer';
 import { Service } from 'injectant';
 
 import { UserInput } from './user.input';
-import { User } from './user.object-type';
+import { User } from './user';
 import { UserRepository } from './user.repository';
 
 @Service()

@@ -12,7 +12,7 @@ async function main() {
     const schema = await buildSchema({
         container: Injector,
         resolvers: [UserResolver, OkResolver],
-        validate: false,
+        validate: true,
         // automatically create `schema.gql` file with schema definition in current folder
         emitSchemaFile: '~schema.gql',
     });
