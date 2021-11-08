@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@abraham/reflection": "^0.7.0",
-    "apollo-server": "^2.10.1",
+    "apollo-server": "^2.25.3",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.11.0",
     "dataloader": "^2.0.0",
