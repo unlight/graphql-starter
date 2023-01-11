@@ -28,7 +28,7 @@
     "@abraham/reflection": "^0.7.0",
     "apollo-server": "^2.10.1",
     "class-transformer": "^0.2.3",
-    "class-validator": "^0.11.0",
+    "class-validator": "^0.14.0",
     "dataloader": "^2.0.0",
     "graphql": "^14.6.0",
     "injectant": "^1.1.0",
